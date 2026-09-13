@@ -1,0 +1,38 @@
+## Live route: glm-5.3-flash, deepseek-v4-pro-0813, kimi-k2.6, qwen3.8-max, seed-2.1-pro
+
+# Consensus report
+
+Prompt: _What was Apple's total revenue for the fiscal quarter ended December 28, 2024, and who is Apple's CEO?_
+Models: glm-5.3-flash, deepseek-v4-pro-0813, kimi-k2.6, qwen3.8-max, seed-2.1-pro
+Failed models: kimi-k2.6, seed-2.1-pro
+
+5 consensus · 0 disagreement · 1 single-source · 0 uncited · 2 validation note(s)
+
+## Consensus
+
+- ✅ Tim Cook is Apple's CEO.  _(by glm-5.3-flash)_
+  - agrees with: deepseek-v4-pro-0813, qwen3.8-max
+  - source: [Apple Leadership](https://www.apple.com/leadership/) — “Tim Cook is the CEO of Apple and serves on its board of directors.”
+- ✅ Apple's total revenue for the fiscal quarter ended December 28, 2024, was $124.3 billion.  _(by deepseek-v4-pro-0813)_
+  - agrees with: qwen3.8-max
+  - source: [Apple reports first quarter results](https://www.apple.com/newsroom/2025/01/apple-reports-first-quarter-results/) — “The Company posted quarterly revenue of $124.3 billion, up 4 percent year over year.”
+- ✅ Apple's CEO is Tim Cook.  _(by deepseek-v4-pro-0813)_
+  - agrees with: glm-5.3-flash, qwen3.8-max
+  - source: [Apple Leadership - Tim Cook](https://www.apple.com/leadership/tim-cook/) — “Tim Cook is the CEO of Apple.”
+- ✅ Apple's total revenue for the fiscal quarter ended December 28, 2024 was $124.3 billion.  _(by qwen3.8-max)_
+  - agrees with: deepseek-v4-pro-0813
+  - source: [Apple reports first quarter results](https://www.apple.com/newsroom/2025/01/apple-reports-first-quarter-results/) — “Apple today announced financial results for its fiscal 2025 first quarter ended December 28, 2024. The Company posted quarterly revenue of $124.3 billion, up 4 percent from the year-ago quarter.”
+- ✅ Apple's CEO is Tim Cook.  _(by qwen3.8-max)_
+  - agrees with: deepseek-v4-pro-0813, glm-5.3-flash
+  - source: [Tim Cook](https://en.wikipedia.org/wiki/Tim_Cook) — “Timothy Donald Cook is an American business executive who has been the chief executive officer of Apple Inc. since 2011.”
+
+## Single source
+
+- ✅ Apple reported total revenue of $124.3 billion for its fiscal 2025 first quarter, which ended December 28, 2024, up 4 percent year over year.  _(by glm-5.3-flash)_
+  - source: [Apple reports first quarter results](https://www.apple.com/newsroom/2025/01/apple-reports-first-quarter-results/) — “Apple today announced financial results for its fiscal 2025 first quarter ended December 28, 2024. The Company posted quarterly revenue of $124.3 billion, up 4 percent year over year, and quarterly diluted earnings per share of $2.40.”
+
+## Validation notes
+
+- kimi-k2.6: provider error — HTTP Error 504: Gateway Time-out
+- seed-2.1-pro: provider error — HTTP Error 504: Gateway Time-out
+

@@ -1,0 +1,135 @@
+## Raw model candidates
+
+### base-model
+```json
+{
+  "model": "base-model",
+  "claims": [
+    {
+      "text": "Acme's third-quarter revenue was $1.2 billion.",
+      "citations": [
+        {
+          "url": "https://investor.acme.example.com/filings/10q-q3.pdf",
+          "title": "Acme Form 10-Q (Q3)",
+          "quote": "Net revenue for the quarter was $1.2 billion."
+        }
+      ]
+    },
+    {
+      "text": "Acme's third-quarter net income was $104 million.",
+      "citations": [
+        {
+          "url": "https://investor.acme.example.com/news/q3-results",
+          "title": "Acme Q3 results press release",
+          "quote": "Net income of $104 million."
+        }
+      ]
+    },
+    {
+      "text": "Jane Doe is Acme's chief executive officer.",
+      "citations": [
+        {
+          "url": "https://news.example.com/acme-jane-doe-ceo",
+          "title": "Jane Doe named Acme CEO",
+          "quote": "Ms. Doe, the company's chief executive, ..."
+        }
+      ]
+    }
+  ]
+}
+```
+
+### audit-model
+```json
+{
+  "model": "audit-model",
+  "claims": [
+    {
+      "text": "Acme reported third-quarter revenue of $1.4 billion.",
+      "citations": [
+        {
+          "url": "https://investor.acme.example.com/events/q3-earnings-call",
+          "title": "Acme Q3 earnings call transcript",
+          "quote": "... bringing total revenue to $1.4 billion."
+        }
+      ]
+    },
+    {
+      "text": "For the third quarter, Acme's net income was $104 million.",
+      "citations": [
+        {
+          "url": "https://investor.acme.example.com/news/q3-results",
+          "title": "Acme Q3 results press release",
+          "quote": "Net income of $104 million."
+        }
+      ]
+    },
+    {
+      "text": "Jane Doe is the chief executive of Acme.",
+      "citations": [
+        {
+          "url": "https://news.example.com/acme-jane-doe-ceo",
+          "title": "Jane Doe named Acme CEO"
+        }
+      ]
+    },
+    {
+      "text": "John Smith is Acme's chief financial officer.",
+      "citations": []
+    },
+    {
+      "text": "",
+      "citations": []
+    },
+    {
+      "text": "Acme plans to hire 500 engineers.",
+      "citations": [],
+      "hallucination_confidence": 0.99
+    }
+  ]
+}
+```
+
+---
+
+# Consensus report
+
+Prompt: _Summarize Acme Corp's third-quarter financial results and its leadership._
+Models: base-model, audit-model
+Failed models: (none)
+
+4 consensus · 2 disagreement · 1 single-source · 1 uncited · 2 validation note(s)
+
+## Disagreement
+
+- ⚠️ Acme's third-quarter revenue was $1.2 billion.  _(by base-model)_
+  - conflict: audit-model says $1.4 billion (“Acme reported third-quarter revenue of $1.4 billion.”)
+  - source: [Acme Form 10-Q (Q3)](https://investor.acme.example.com/filings/10q-q3.pdf) — “Net revenue for the quarter was $1.2 billion.”
+- ⚠️ Acme reported third-quarter revenue of $1.4 billion.  _(by audit-model)_
+  - conflict: base-model says $1.2 billion (“Acme's third-quarter revenue was $1.2 billion.”)
+  - source: [Acme Q3 earnings call transcript](https://investor.acme.example.com/events/q3-earnings-call) — “... bringing total revenue to $1.4 billion.”
+
+## Consensus
+
+- ✅ Acme's third-quarter net income was $104 million.  _(by base-model)_
+  - agrees with: audit-model
+  - source: [Acme Q3 results press release](https://investor.acme.example.com/news/q3-results) — “Net income of $104 million.”
+- ✅ Jane Doe is Acme's chief executive officer.  _(by base-model)_
+  - agrees with: audit-model
+  - source: [Jane Doe named Acme CEO](https://news.example.com/acme-jane-doe-ceo) — “Ms. Doe, the company's chief executive, ...”
+- ✅ For the third quarter, Acme's net income was $104 million.  _(by audit-model)_
+  - agrees with: base-model
+  - source: [Acme Q3 results press release](https://investor.acme.example.com/news/q3-results) — “Net income of $104 million.”
+- ✅ Jane Doe is the chief executive of Acme.  _(by audit-model)_
+  - agrees with: base-model
+  - source: [Jane Doe named Acme CEO](https://news.example.com/acme-jane-doe-ceo)
+
+## Single source
+
+- ✅ 🚫(uncited) John Smith is Acme's chief financial officer.  _(by audit-model)_
+
+## Validation notes
+
+- audit-model: claim[4] dropped: text: String should have at least 1 character
+- audit-model: claim[5] dropped: hallucination_confidence: Extra inputs are not permitted
+

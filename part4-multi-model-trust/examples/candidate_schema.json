@@ -1,0 +1,88 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "description": "A verifiable source backing one or more claims.",
+      "properties": {
+        "url": {
+          "description": "Verifiable http(s) URL of the source document",
+          "title": "Url",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable source title",
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "quote": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Supporting excerpt from the source",
+          "title": "Quote"
+        }
+      },
+      "required": [
+        "url",
+        "title"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "description": "A single, atomic factual assertion made by one model.",
+      "properties": {
+        "text": {
+          "description": "The assertion, one fact per claim",
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "citations": {
+          "description": "Sources that back this claim; empty means 'uncited'",
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "title": "Citations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Claim",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Structured output a single model produces for one prompt.",
+  "properties": {
+    "model": {
+      "description": "Identifier of the model/agent",
+      "minLength": 1,
+      "title": "Model",
+      "type": "string"
+    },
+    "claims": {
+      "description": "Assertions made",
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "title": "Claims",
+      "type": "array"
+    }
+  },
+  "required": [
+    "model"
+  ],
+  "title": "ModelCandidate",
+  "type": "object"
+}
